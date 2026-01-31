@@ -1,0 +1,50 @@
+[package]
+name = "paso-02-wifi-station"
+version = "0.1.0"
+edition = "2021"
+resolver = "2"
+rust-version = "1.77"
+
+# Un solo binario, sin test harness (no hay runner de tests en ESP32)
+[[bin]]
+name = "paso-02-wifi-station"
+harness = false
+
+# ─── Release: optimizar para tamaño (flash es limitado) ───
+[profile.release]
+opt-level = "s"    # Optimizar por tamaño (no velocidad)
+lto = true         # Link-Time Optimization: elimina código muerto entre crates
+codegen-units = 1  # Un solo codegen unit = mejor optimización, build más lento
+
+# ─── Dev: debug symbols + optimización mínima ───
+[profile.dev]
+debug = true       # Symbols para debugging con probe-rs o monitor
+opt-level = "z"    # Aún en dev optimizamos tamaño (flash limitado)
+
+[dependencies]
+# Logging (la macro log::info!, log::error!, etc.)
+log = "0.4"
+
+# ESP-IDF HAL: Hardware Abstraction Layer
+# Acceso a GPIO, LEDC (PWM), SPI, I2C, timers, etc.
+esp-idf-hal = { version = "0.45", features = ["rmt-legacy"] }
+
+# ESP-IDF SVC: Servicios de alto nivel
+# WiFi, HTTP, WebSocket, NVS, event loop, etc.
+esp-idf-svc = { version = "0.51", features = ["critical-section"] }
+
+# Traits de embedded-svc (HTTP Method, Write, ipv4, etc.)
+embedded-svc = "0.28"
+
+# Strings de tamaño fijo para configuración WiFi (SSID max 32, password max 64)
+heapless = "0.8"
+
+# Manejo de errores con contexto
+anyhow = "1.0"
+
+# Borrado seguro de credenciales en memoria (zeroes on drop)
+zeroize = { version = "1.8", features = ["derive"] }
+
+[build-dependencies]
+# Build system para esp-idf: descarga y compila el SDK de C
+embuild = "0.33"
